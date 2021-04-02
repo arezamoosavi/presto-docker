@@ -5,5 +5,5 @@ Docker image for presto workings
 The Database properties should be add to container <b>/etc</b> like [this](https://github.com/arezamoosavi/presto-docker/blob/main/example/Dockerfile).
 
 ```bash
-docker pull arezamoosavi/superset
+docker pull arezamoosavi/presto
 ```
