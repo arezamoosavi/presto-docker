@@ -38,7 +38,7 @@ RUN mkdir -p /var/lib/presto/data
 WORKDIR /presto-server-$PRESTO_VERSION
 
 RUN mkdir -p etc
-ADD ./presto/etc /etc
+ADD ./presto/etc etc/
 
 # Download Presto CLI
 RUN mkdir -p bin
