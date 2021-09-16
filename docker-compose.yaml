@@ -1,12 +1,27 @@
-version: "3"
+version: "3.3"
 
 services:
-  presto:
+  presto-master:
     build:
-      context: .
-      dockerfile: ./example/Dockerfile
+      context: ./presto
+      args:
+        PRESTO_VERSION: 0.261
     ports:
       - "8080:8080"
+    volumes:
+      - ./presto_data/master:/var/lib/presto/data
+      - ./presto/coordinator_config.properties:/opt/presto/etc/config.properties
+      - ./presto/etc/catalog:/opt/presto/etc/catalog
+  presto-worker:
+    # build: ./presto
+    build:
+      context: ./presto
+      args:
+        PRESTO_VERSION: 0.261
+    volumes:
+      - ./presto/worker_config.properties:/opt/presto/etc/config.properties
+      - ./presto/etc/catalog:/opt/presto/etc/catalog
+
   mysql:
     image: mysql:8.0
     ports:
